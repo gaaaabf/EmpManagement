@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/userDashboard', 'UsersController@userDashboard');
+	Route::get('/userDashboard/{id}', 'UsersController@viewUser');
+	Route::delete('/userDashboardD/{id}', 'UsersController@deleteUser');
+	Route::put('/userDashboard/update/{id}', 'UsersController@updateUser');
+});
